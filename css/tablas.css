@@ -1,31 +1,7 @@
 
 
-/* Para la tabla */
-.tabla{
-    display: flex;
-    flex-direction: column;
-}
-.fila{
-    display: flex;
-}
-.celda{
-    /* margin: 10px 50px; */
-    width: 100px;
-    height: 50px;
-    padding: 10px 20px;
-    background-color: #035aa1;
-
-    overflow:auto;
-    text-align: center;
-    border: 4px solid black;
-    margin: -2px;
-}
-.celda.titu{
-    background-color: #0306a1;
-}
-
 table {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
     border: 1px solid #ccc;
