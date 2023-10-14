@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <!-- <link rel="stylesheet" type="text/css" href="http://localhost/parte/css/menus.css" /> -->
+
+<link rel="stylesheet" href="../../css/menus.css">
+
+</head>
+
+<body>
+  <nav >
+    <ul>
+      <li onclick="cargarNuevaPagina('insertar.html')">Añadir</li>
+      <li onclick="cargarNuevaPagina('../php/mostrar.php')">Mostrar</li>
+      <li onclick="cargarNuevaPagina('../php/interfaz_modificar.php')">Actualizar</li>
+      <li onclick="cargarNuevaPagina('../php/interfaz_borrar.php')">Eliminar</li>
+    </ul>
+  </nav>
+
+  <iframe id="miFrame" src="" scrolling="no" style="display: none; width: 100%"></iframe>
+
+  <script src="../../css/opcion.js"> </script>
+
+</body>
+
+</html>

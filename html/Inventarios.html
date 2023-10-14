@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/cabecera.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+          <a onclick="cargarNuevaPagina('categoria/html/interfaz_categoria.html')">Categorias</a>
+          <a onclick="cargarNuevaPagina('')">Clientes</a>
+          <a onclick="cargarNuevaPagina('')">Inventario</a>
+          <a onclick="cargarNuevaPagina('')">Productos</a>
+          <a onclick="cargarNuevaPagina('')">Proveedores</a>
+          <a onclick="cargarNuevaPagina('')">Tienda</a>
+          <a onclick="cargarNuevaPagina('')">Transacciones</a>
+        </div>
+    </div>
+
+    <div class="navegador">
+        <div class="botonDesplegable" onclick="openNav()">☰ MENU</div>
+    </div>
+
+
+    
+
+
+    <script>
+        window.location.hash = "no-back-button";
+        window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
+        window.onhashchange = function () { window.location.hash = "no-back-button"; }
+        function openNav() {
+          document.getElementById("myNav").style.width = "30%";
+        }
+    
+        function closeNav() {
+          document.getElementById("myNav").style.width = "0%";
+        }
+        function cargarNuevaPagina(r, titulo) {
+          closeNav();
+          document.getElementById("menu").innerHTML = "&#9776" + titulo;
+          var iframe = document.getElementById("miFrame");
+          iframe.src = r;
+          iframe.style.display = "block";
+        }
+      </script>
+</body>
+</html>

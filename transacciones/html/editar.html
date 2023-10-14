@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/cabecera.css">
+    <link rel="stylesheet" href="../../css/insertar.css">
+</head>
+<body>
+
+
+    <div class="formulario">
+        <div class="titulo">Editando datos en Transacciones</div>
+        <div class="losInputs">
+            <div class="insertarndo_un_dato">
+                <label for="Id_transacciones">Seleccione la Transaccion a editar</label>
+                <select name="getId_transacciones" id="Id_transacciones"></select>
+            </div>
+            <div class="insertarndo_un_dato">
+                <label for="getNumero">Inserte la nueva cantidad</label>
+                <input type="number" name="getNumero" id="getNumero">
+            </div>
+            <div class="insertarndo_un_dato">
+                <label for="getdate">Inserte la nueva fecha</label>
+                <input type="date" name="getdate" id="getdate">
+                <!-- <input type="file"> -->
+            </div>
+        </div>
+        <div class="insertarndo_un_dato boton">
+            <button class="Elboton" onclick="editarDatos()">Actualizar datangos</button>
+        </div>
+    </div>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "../php/getIdTransacciones.php", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var opciones = JSON.parse(xhr.responseText);
+
+                // Obtener la lista desplegable
+                var select = document.getElementById("Id_transacciones");
+                for (var i = 0; i < opciones.a1.length; i++) {
+                    var option = document.createElement("option");
+                    option.text = "["+opciones.a1[i]+"]-["+opciones.a2[i]+"]-["+opciones.a3[i]+"]-["+opciones.a4[i]+"]-["+opciones.a5[i]+"]";
+                    select.appendChild(option);
+                }
+            }
+        };
+        xhr.send();
+
+        
+
+        function editarDatos() {
+            var cantidadNueva=document.getElementById("getNumero").value;
+            var fechaNueva=document.getElementById("getdate").value;
+            var Id_transacciones=document.getElementById("Id_transacciones").value;
+            
+            if (cantidadNueva==="" || fechaNueva==="" || Id_transacciones==="") {
+            alert("Una variavle esta vacia");
+            }
+            else{
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "../php/editar.php", true);""
+                console.log("llllllllllll");
+                console.log(cantidadNueva);
+                console.log(fechaNueva);
+                console.log(Id_transacciones);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                var data = "a="+cantidadNueva+"&b="+fechaNueva+"&c="+Id_transacciones;
+
+                xhr.send(data);
+            }
+        }
+    </script>
+    <script>
+        window.location.hash = "no-back-button";
+        window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
+        window.onhashchange = function () { window.location.hash = "no-back-button"; }
+        function openNav() {
+            document.getElementById("myNav").style.width = "30%";
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+        }
+        function cargarNuevaPagina(r, titulo) {
+            closeNav();
+            document.getElementById("menu").innerHTML = "&#9776" + titulo;
+            var iframe = document.getElementById("miFrame");
+            iframe.src = r;
+            iframe.style.display = "block";
+        }
+    </script>
+</body>
+</html>

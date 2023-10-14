@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/cabecera.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap">
+
+</head>
+<body>
+
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+          <a onclick="cargarNuevaPagina('categoria/html/interfaz_categoria.html', 'CATEGORIA')">Categorias</a>
+          <a onclick="cargarNuevaPagina('clientes/html/interfaz_cliente.html','CLIENTES')">Clientes</a>
+          <a onclick="cargarNuevaPagina('inventario/html/index.html' , 'INVENTARIO')">Inventario</a>
+          <a onclick="cargarNuevaPagina('producto/html/interfaz_producto.html', 'PRODUCTO')">Productos</a>
+          <a onclick="cargarNuevaPagina('proveedores/html/interfaz_proveedores.html','PROVEEDORES')">Proveedores</a>
+          <a onclick="cargarNuevaPagina('tiendas/html/index.html','TIENDAS')">Tienda</a>
+          <a onclick="cargarNuevaPagina('transacciones/html/interfaz_trans.html', 'TRANSACCIONES')">Transacciones</a>
+        </div>
+    </div>
+
+ 
+    <div class="navegador">
+  <span id="menu" style="font-size:  30px; cursor: pointer" onclick="openNav()">&#9776; MENU</span>
+
+    </div>
+
+
+
+
+    <iframe id="miFrame" src="" scrolling="no">
+    </iframe>
+    <script>
+           function openNav() {
+      document.getElementById("myNav").style.width = "30%";
+    }
+
+    function closeNav() {
+      document.getElementById("myNav").style.width = "0%";
+    }
+    function cargarNuevaPagina(r, titulo) {
+      closeNav();
+      document.getElementById("menu").innerHTML = "&#9776" + titulo;
+      var iframe = document.getElementById("miFrame");
+      iframe.src = r;
+      iframe.style.display = "block";
+    }
+      </script>
+</body>
+</html>

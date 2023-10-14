@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrando Transacciones</title>
+    <link rel="stylesheet" href="../../css/cabecera.css">
+    <link rel="stylesheet" href="../../css/insertar.css">
+
+</head>
+<body>
+
+
+    <!-- formulario donde ira todo -->
+    <div class="formulario">
+            <div class="titulo">Mostrando datos en Transacciones</div>
+
+
+            <div class="tabla">
+                <div class="fila">
+                    <div class="celda titu">ID</div>
+                    <div class="celda titu">ID cliente</div>
+                    <div class="celda titu">ID producto</div>
+                    <div class="celda titu">cantidad</div>
+                    <div class="celda titu">fecha</div>
+                </div>
+            </div>
+    </div>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "../php/getIdTransacciones.php", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Parsear la respuesta JSON
+                var opciones = JSON.parse(xhr.responseText);
+                
+                // Obtener la lista desplegable
+                var tabla = document.querySelector(".tabla");
+                for (var i = 0; i < opciones.a1.length; i++) {
+                    var fila = document.createElement("div");
+                    fila.className="fila";
+
+                    var celda1 = document.createElement("div");
+                    var celda2 = document.createElement("div");
+                    var celda3 = document.createElement("div");
+                    var celda4 = document.createElement("div");
+                    var celda5 = document.createElement("div");
+                    celda1.className="celda";
+                    celda2.className="celda";
+                    celda3.className="celda";
+                    celda4.className="celda";
+                    celda5.className="celda";
+
+                    celda1.textContent=opciones.a1[i];
+                    celda2.textContent=opciones.a2[i];
+                    celda3.textContent=opciones.a3[i];
+                    celda4.textContent=opciones.a4[i];
+                    celda5.textContent=opciones.a5[i];
+
+                    fila.appendChild(celda1);
+                    fila.appendChild(celda2);
+                    fila.appendChild(celda3);
+                    fila.appendChild(celda4);
+                    fila.appendChild(celda5);
+
+                    tabla.appendChild(fila);
+                }
+            }
+        };
+        xhr.send();
+    </script>
+    <script>
+        window.location.hash = "no-back-button";
+        window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
+        window.onhashchange = function () { window.location.hash = "no-back-button"; }
+        function openNav() {
+            document.getElementById("myNav").style.width = "30%";
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+        }
+        function cargarNuevaPagina(r, titulo) {
+            closeNav();
+            document.getElementById("menu").innerHTML = "&#9776" + titulo;
+            var iframe = document.getElementById("miFrame");
+            iframe.src = r;
+            iframe.style.display = "block";
+        }
+    </script>
+</body>
+</html>

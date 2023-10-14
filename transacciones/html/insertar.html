@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertar Transacciones</title>
+    <link rel="stylesheet" href="../../css/cabecera.css">
+    <link rel="stylesheet" href="../../css/insertar.css">
+
+</head>
+<body>
+
+
+
+    <!-- formulario donde ira todo -->
+    <div class="formulario">
+            <div class="titulo">Insertando datos en Transacciones</div>
+            <div class="losInputs">
+                <div class="insertarndo_un_dato">
+                    <label for="Id_cliente">Seleccione Cliente</label>
+                    <select class="select" name="getId_cliente" id="Id_cliente">
+                        <!-- <option value="dd">ALGUN VALOR</option> -->
+                    </select>
+                </div>
+                <div class="insertarndo_un_dato">
+                    <label for="Id_producto">Seleccione Producto</label>
+                    <select class="select" name="getId_producto" id="Id_producto">
+                        <!-- <option value="dd">ALGUN VALOR</option> -->
+                    </select>
+                </div>
+                <div class="insertarndo_un_dato">
+                    <label for="getNumero">Inserte la Cantidad</label>
+                    <input type="number" name="getNumero" id="getNumero">
+                </div>
+                <div class="insertarndo_un_dato">
+                    <label for="getdate">Inserte la Fecha</label>
+                    <input type="date" name="getdate" id="getdate">
+                </div>
+            </div>
+            <div class="insertarndo_un_dato boton">
+                <button class="Elboton" onclick="MandandoDatos()">Enviar datangos</button>
+            </div>
+    </div>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "../php/pidiendoClientesyProductos.php", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Parsear la respuesta JSON
+                var opciones = JSON.parse(xhr.responseText);
+                // console.log(opciones);
+
+                // // var bb=opciones.a1;
+                // // alert(bb);
+                MoviendoArrays(opciones.a1,opciones.a2,opciones.a3,opciones.a4);
+
+                // Obtener la lista desplegable
+                var select = document.getElementById("Id_cliente");
+                for (var i = 0; i < opciones.a2.length; i++) {
+                    var option = document.createElement("option");
+                    option.text = opciones.a2[i];
+                    select.appendChild(option);
+                }
+                var select = document.getElementById("Id_producto");
+                for (var i = 0; i < opciones.a4.length; i++) {
+                    var option = document.createElement("option");
+                    option.text = opciones.a4[i];
+                    select.appendChild(option);
+                }
+            }
+        };
+        xhr.send();
+
+        var ArrayIdClient;
+        var ArrayNombClient;
+        var ArrayIdProdt;
+        var ArrayNombProdt;
+        function MoviendoArrays(a1,a2,a3,a4) {
+            ArrayIdClient=a1;
+            ArrayNombClient=a2;
+            ArrayIdProdt=a3;
+            ArrayNombProdt=a4;
+            console.log(ArrayIdClient);
+            console.log(ArrayNombClient);
+            console.log(ArrayIdProdt);
+            console.log(ArrayNombProdt);
+        }
+
+
+        function MandandoDatos() {
+            var select=document.getElementById("Id_cliente");
+            var selectedValue=select.value;
+            var posicion1=ArrayNombClient.indexOf(selectedValue);
+
+            var select=document.getElementById("Id_producto");
+            var selectedValue=select.value;
+            var posicion2=ArrayNombProdt.indexOf(selectedValue);
+
+            // AGARRANDO DATOS PARA MANDAR
+            var idCliente=ArrayIdClient[posicion1];
+            var idProducto=ArrayIdProdt[posicion2];
+            var cant=document.getElementById("getNumero").value;
+            var datee=document.getElementById("getdate").value;
+            
+            if (idCliente==="" || idProducto==="" || cant==="" || datee==="") {
+            alert("Una variavle esta vacia");
+            }
+            else{
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "../php/insertar.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                var data = "a="+idCliente+"&b="+idProducto+"&c="+cant+"&d="+datee;
+
+                xhr.send(data);
+            }
+
+            console.log(idCliente);
+            console.log(idProducto);
+            console.log(cant);
+            console.log(datee);
+        }
+    </script>
+    <script>
+        window.location.hash = "no-back-button";
+        window.location.hash = "Again-No-back-button";//esta linea es necesaria para chrome
+        window.onhashchange = function () { window.location.hash = "no-back-button"; }
+        function openNav() {
+            document.getElementById("myNav").style.width = "30%";
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+        }
+        function cargarNuevaPagina(r, titulo) {
+            closeNav();
+            document.getElementById("menu").innerHTML = "&#9776" + titulo;
+            var iframe = document.getElementById("miFrame");
+            iframe.src = r;
+            iframe.style.display = "block";
+        }
+    </script>
+</body>
+</html>
+
+<!-- var xhr = new XMLHttpRequest();
+xhr.open("POST", "../php/pidiendoClientesyProductos.php", true);
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+// Crear un objeto con los datos que deseas enviar
+var data = "a=valor_a&b=valor_b"; // Reemplaza con los valores que desees enviar
+
+xhr.send(data); -->
