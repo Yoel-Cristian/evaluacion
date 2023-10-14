@@ -14,13 +14,13 @@
     <div id="myNav" class="overlay">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="overlay-content">
-          <a onclick="cargarNuevaPagina('categoria/html/interfaz_categoria.html', 'CATEGORIA')">Categorias</a>
-          <a onclick="cargarNuevaPagina('clientes/html/interfaz_cliente.html','CLIENTES')">Clientes</a>
-          <a onclick="cargarNuevaPagina('inventario/html/index.html' , 'INVENTARIO')">Inventario</a>
-          <a onclick="cargarNuevaPagina('producto/html/interfaz_producto.html', 'PRODUCTO')">Productos</a>
-          <a onclick="cargarNuevaPagina('proveedores/html/interfaz_proveedores.html','PROVEEDORES')">Proveedores</a>
-          <a onclick="cargarNuevaPagina('tiendas/html/index.html','TIENDAS')">Tienda</a>
-          <a onclick="cargarNuevaPagina('transacciones/html/interfaz_trans.html', 'TRANSACCIONES')">Transacciones</a>
+          <a onclick="cargarNuevaPagina1('categoria/html/interfaz_categoria.html', 'CATEGORIA')">Categorias</a>
+          <a onclick="cargarNuevaPagina1('clientes/html/interfaz_cliente.html','CLIENTES')">Clientes</a>
+          <a onclick="cargarNuevaPagina1('inventario/html/index.html' , 'INVENTARIO')">Inventario</a>
+          <a onclick="cargarNuevaPagina1('producto/html/interfaz_producto.html', 'PRODUCTO')">Productos</a>
+          <a onclick="cargarNuevaPagina1('proveedores/html/interfaz_proveedores.html','PROVEEDORES')">Proveedores</a>
+          <a onclick="cargarNuevaPagina1('tiendas/html/index.html','TIENDAS')">Tienda</a>
+          <a onclick="cargarNuevaPagina1('transacciones/html/interfaz_trans.html', 'TRANSACCIONES')">Transacciones</a>
         </div>
     </div>
 
@@ -43,7 +43,7 @@
     function closeNav() {
       document.getElementById("myNav").style.width = "0%";
     }
-    function cargarNuevaPagina(r, titulo) {
+    function cargarNuevaPagina1(r, titulo) {
       closeNav();
       document.getElementById("menu").innerHTML = "&#9776" + titulo;
       var iframe = document.getElementById("miFrame");
