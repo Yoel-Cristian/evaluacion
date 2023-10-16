@@ -8,7 +8,7 @@ function obtenerOpciones() {
     }
 
     // seleccionando para clientes
-    $query = "SELECT id, id cliente, id producto, cantidad, fecha FROM transacciones";
+    $query = "SELECT id, id cliente, id_producto, cantidad, fecha FROM transacciones";
     $result = $conn->query($query);
     while ($row = $result->fetch_assoc()) {
         $opciones[] = $row['id'];

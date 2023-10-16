@@ -21,7 +21,7 @@ if (mysqli_connect_errno())
 //   $fecha = $_POST["categoria"];
 echo "ddddddddddddd";
 
-    $insert_query = "INSERT INTO `transacciones`(`id cliente`,`id producto`,`cantidad`, `fecha`) 
+    $insert_query = "INSERT INTO `transacciones`(`id cliente`,`id_producto`,`cantidad`, `fecha`) 
     VALUES ('". mysqli_real_escape_string($mysqli_link, $a)."',
              '".mysqli_real_escape_string($mysqli_link, $b)."',
              '".mysqli_real_escape_string($mysqli_link, $c) ."', 
